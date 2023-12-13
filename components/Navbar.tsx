@@ -173,12 +173,12 @@ const Navbar = () => {
           <ul className="flex flex-col items-center justify-center h-full gap-12 surfaceDuo iphoneSe">
             {NAV_LINKS.map((link, index) => (
               <ScrollLink
-                key={link.key}
                 to={link.id}
                 spy={true}
                 smooth={true}
                 offset={-80}
                 duration={500}
+                key={link.key}
                 onClick={handleLinkClick}
               >
                 <ArcadeButton color={colors[index % colors.length]}>
@@ -191,7 +191,7 @@ const Navbar = () => {
       )}
 
       {!isMobile && (
-        <ul className="flex flex-row items-center justify-center h-full gap-12 lg:flex">
+        <ul className={`flex flex-row items-center justify-center h-full gap-12 lg:flex hidden-on-mobile`}>
           {NAV_LINKS.map((link, index) => (
             <ScrollLink
               to={link.id}
