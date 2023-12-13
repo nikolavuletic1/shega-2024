@@ -55,9 +55,9 @@ const Navbar = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   setIsMobile(true);
-  // }, []);
+  useEffect(() => {
+    setIsMobile(true);
+  }, []);
   
 
   const colors: Color[] = ['green', 'red', 'orange', 'blue'];
