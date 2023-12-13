@@ -119,14 +119,11 @@ import YellowBgPattern from './YellowBgPattern';
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(() => {
-    // Check if window is defined (not in SSR)
     if (typeof window !== 'undefined') {
       return window.innerWidth <= 768;
     }
-    // Default value for SSR or cases where window is not available
     return false;
   });
-  
 
   const handleToggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -138,26 +135,21 @@ const Navbar = () => {
 
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(typeof window !== 'undefined' && window.innerWidth <= 768);
     };
-  
+
     const debouncedCheckIsMobile = debounce(checkIsMobile, 200);
-  
+
     checkIsMobile(); // Initial check
-  
-    const handleResize = () => {
-      debouncedCheckIsMobile();
-    };
-  
+
     if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize);
-  
+      window.addEventListener('resize', debouncedCheckIsMobile);
+
       return () => {
-        window.removeEventListener('resize', handleResize);
+        window.removeEventListener('resize', debouncedCheckIsMobile);
       };
     }
   }, []);
-  
 
   const colors: Color[] = ['green', 'red', 'orange', 'blue'];
 
@@ -222,11 +214,11 @@ const Navbar = () => {
 
 export default Navbar;
 
-function debounce(func: (...args: any[]) => void, delay: number) {
+function debounce<T extends (...args: any[]) => void>(func: T, delay: number) {
   let timeout: NodeJS.Timeout;
-  return function (this: any, ...args: any[]) {
+  return function(this: ThisParameterType<T>, ...args: Parameters<T>) {
     const context = this;
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(context, args), delay);
-  };
+  } as T;
 }
