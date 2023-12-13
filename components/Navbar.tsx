@@ -21,18 +21,39 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
-  const checkIsMobile = () => {
-    setIsMobile(window.innerWidth <= 768);
-  };
+
+
+  // useEffect(() => {
+
+  //   const checkIsMobile = () => {
+  //     setIsMobile(window.innerWidth <= 768);
+  //   };
+  //   checkIsMobile();
+  //   window.addEventListener('resize', checkIsMobile);
+
+  //   return () => {
+  //     window.removeEventListener('resize', checkIsMobile);
+  //   };
+  // }, []);
+
 
   useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+  
+    // Set initial mobile view state when component mounts
     checkIsMobile();
+  
+    // Add event listener for window resize
     window.addEventListener('resize', checkIsMobile);
-
+  
+    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('resize', checkIsMobile);
     };
   }, []);
+  
 
   const colors: Color[] = ['green', 'red', 'orange', 'blue'];
 
