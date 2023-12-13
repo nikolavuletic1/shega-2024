@@ -136,21 +136,24 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+ useEffect(() => {
+  const checkIsMobile = () => {
+    setIsMobile(typeof window !== 'undefined' && window.innerWidth <= 768);
+  };
 
-    const debouncedCheckIsMobile = debounce(checkIsMobile, 200);
+  const debouncedCheckIsMobile = debounce(checkIsMobile, 200);
 
-    checkIsMobile(); // Initial check
+  checkIsMobile(); // Initial check
 
+  if (typeof window !== 'undefined') {
     window.addEventListener('resize', debouncedCheckIsMobile);
 
     return () => {
       window.removeEventListener('resize', debouncedCheckIsMobile);
     };
-  }, []);
+  }
+}, []);
+
 
   const colors: Color[] = ['green', 'red', 'orange', 'blue'];
 
