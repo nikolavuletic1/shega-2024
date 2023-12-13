@@ -53,6 +53,10 @@ const Navbar = () => {
       window.removeEventListener('resize', checkIsMobile);
     };
   }, []);
+
+  useEffect(() => {
+    setIsMobile(true);
+  }, []);
   
 
   const colors: Color[] = ['green', 'red', 'orange', 'blue'];
