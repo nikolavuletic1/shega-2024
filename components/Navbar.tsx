@@ -11,7 +11,8 @@ import YellowBgPattern from './YellowBgPattern';
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  // const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const handleToggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -54,9 +55,9 @@ const Navbar = () => {
     };
   }, []);
 
-  useEffect(() => {
-    setIsMobile(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsMobile(true);
+  // }, []);
   
 
   const colors: Color[] = ['green', 'red', 'orange', 'blue'];
