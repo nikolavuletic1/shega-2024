@@ -226,27 +226,23 @@
 
 // Navbar.js
 'use client';
-import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
-import { useState, useEffect } from 'react';
-import { NAV_LINKS } from "@/constants";
-import HamburgerButton from './HamburgerIcon';
-// import ArcadeButton, { Color } from './ArcadeButoon';
-import YellowBgPattern from './YellowBgPattern';
-import MobileNavbar from './MobileNavBar';
-import ArcadeButton from './ArcadeButoon';
-type Color = 'green' | 'red' | 'orange' | 'blue';
 
 // const colors: Color[] = ['green', 'red', 'orange', 'blue'];
 
+import React, { useState, useEffect } from 'react';
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
+import { NAV_LINKS } from "@/constants";
+import HamburgerButton from './HamburgerIcon';
+import ArcadeButton, { Color } from './ArcadeButoon';
+import YellowBgPattern from './YellowBgPattern';
+import MobileNavbar from './MobileNavBar';
 
-
-interface MobileNavbarProps {
-  isMenuOpen: boolean;
-  handleToggleMenu: () => void;
+interface NavbarProps {
+  // ... other props
 }
-const colors: Color[] = ['green', 'red', 'orange', 'blue']; // Declare the colors array outside the component
-const Navbar = () => {
+const colors: Color[] = ['green', 'red', 'orange', 'blue'];
+const Navbar: React.FC<NavbarProps> = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -256,30 +252,26 @@ const Navbar = () => {
   });
 
   const handleToggleMenu = () => {
-    const colors: Color[] = ['green', 'red', 'orange', 'blue']; // Declare the colors array
     setMenuOpen(!isMenuOpen);
   };
 
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(
-        typeof window !== 'undefined' &&
-          window.matchMedia('(max-width: 767px)').matches
-      );
+      const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches;
+      setIsMobile(isMobile);
     };
-  
-    const debouncedCheckIsMobile = debounce(checkIsMobile, 200);
   
     checkIsMobile(); // Initial check
   
     if (typeof window !== 'undefined') {
-      window.addEventListener('resize', debouncedCheckIsMobile);
+      window.addEventListener('resize', checkIsMobile);
   
       return () => {
-        window.removeEventListener('resize', debouncedCheckIsMobile);
+        window.removeEventListener('resize', checkIsMobile);
       };
     }
   }, []);
+  
 
   return (
     <nav className="z-50 fixed top-0 left-0 right-0 bg-yellow-20 flexCenter h-1/8 padding-container py-5 cursor: pointer">
@@ -291,11 +283,13 @@ const Navbar = () => {
         </div>
       )}
 
-      <MobileNavbar isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} backgroundColor={''} />
+      {(isMobile || isMenuOpen) && (
+        <MobileNavbar isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} backgroundColor={''} />
+      )}
 
-      {!isMobile && (
+      {!isMobile && !isMenuOpen && (
         <ul className={`flex flex-row items-center justify-center h-full gap-12 lg:flex hidden-on-mobile`}>
-          {NAV_LINKS.map((link, index) => (
+          {NAV_LINKS.map((link: { id: string; key: React.Key | null | undefined; label: any; }, index: number) => (
             <ScrollLink
               to={link.id}
               spy={true}
@@ -304,7 +298,7 @@ const Navbar = () => {
               duration={500}
               key={link.key}
             >
-              <ArcadeButton color={colors[index % colors.length]}>
+        <ArcadeButton color={colors[index % colors.length]}>
                 {link.label}
               </ArcadeButton>
             </ScrollLink>
@@ -315,17 +309,20 @@ const Navbar = () => {
   );
 };
 
+
 export default Navbar;
 
-const debounce = function <T extends (...args: any[]) => void>(
-  func: T,
-  delay: number
-) {
-  let timeout: NodeJS.Timeout;
+// const debounce = function <T extends (...args: any[]) => void>(
+//   func: T,
+//   delay: number
+// ) {
+//   let timeout: NodeJS.Timeout;
 
-  return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
-    const context = this;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(context, args), delay);
-  } as T;
-};
+//   return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+//     const context = this;
+//     clearTimeout(timeout);
+//     timeout = setTimeout(() => func.apply(context, args), delay);
+//   } as T;
+// };
+
+
