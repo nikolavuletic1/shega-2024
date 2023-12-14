@@ -247,12 +247,7 @@ const colors: Color[] = ['green', 'red', 'orange', 'blue'];
 
 const Navbar: React.FC<NavbarProps> = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth <= 768;
-    }
-    return false;
-  });
+  const [isMobile, setIsMobile] = useState(false); // Updated initialization
 
   const handleToggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -290,24 +285,24 @@ const Navbar: React.FC<NavbarProps> = () => {
         <MobileNavbar isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} backgroundColor={''} />
       )}
 
-{!isMobile && !isMenuOpen && isMobile === false && (
-  <ul className={`flex flex-row items-center justify-center h-full gap-12 lg:flex hidden-on-mobile`}>
-    {NAV_LINKS.map((link: { id: string; key: React.Key | null | undefined; label: any; }, index: number) => (
-      <ScrollLink
-        to={link.id}
-        spy={true}
-        smooth={true}
-        offset={-144}
-        duration={500}
-        key={link.key}
-      >
-        <ArcadeButton color={colors[index % colors.length]}>
-          {link.label}
-        </ArcadeButton>
-      </ScrollLink>
-    ))}
-  </ul>
-)}
+      {!isMobile && !isMenuOpen && ( // Removed isMobile === false condition
+        <ul className={`flex flex-row items-center justify-center h-full gap-12 lg:flex hidden-on-mobile`}>
+          {NAV_LINKS.map((link: { id: string; key: React.Key | null | undefined; label: any; }, index: number) => (
+            <ScrollLink
+              to={link.id}
+              spy={true}
+              smooth={true}
+              offset={-144}
+              duration={500}
+              key={link.key}
+            >
+              <ArcadeButton color={colors[index % colors.length]}>
+                {link.label}
+              </ArcadeButton>
+            </ScrollLink>
+          ))}
+        </ul>
+      )}
     </nav>
   );
 };
