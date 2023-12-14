@@ -235,7 +235,6 @@ import HamburgerButton from './HamburgerIcon';
 import ArcadeButton, { Color } from './ArcadeButoon';
 import YellowBgPattern from './YellowBgPattern';
 import MobileNavbar from './MobileNavBar';
-import RedBgPattern from './RedBgPattern';
 
 interface NavbarProps {
   // ... other props
@@ -270,7 +269,7 @@ const Navbar: React.FC<NavbarProps> = () => {
 
   return (
     <nav className="z-50 fixed top-0 left-0 right-0 bg-yellow-20 flexCenter h-1/8 padding-container py-5 cursor: pointer">
-      <RedBgPattern />
+      <YellowBgPattern />
 
       {isMobile && (
         <div className="lg:hidden relative z-50">
