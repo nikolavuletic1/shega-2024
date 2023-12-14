@@ -227,17 +227,14 @@
 // Navbar.js
 'use client';
 
-// const colors: Color[] = ['green', 'red', 'orange', 'blue'];
-
 import React, { useState, useEffect } from 'react';
-import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 
 import { NAV_LINKS } from "@/constants";
 import HamburgerButton from './HamburgerIcon';
 import ArcadeButton, { Color } from './ArcadeButoon';
 import YellowBgPattern from './YellowBgPattern';
 import MobileNavbar from './MobileNavBar';
-
 
 interface NavbarProps {
   // ... other props
@@ -247,7 +244,7 @@ const colors: Color[] = ['green', 'red', 'orange', 'blue'];
 
 const Navbar: React.FC<NavbarProps> = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false); // Updated initialization
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleToggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -258,18 +255,17 @@ const Navbar: React.FC<NavbarProps> = () => {
       const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches;
       setIsMobile(isMobile);
     };
-  
-    checkIsMobile(); // Initial check
-  
+
+    checkIsMobile();
+
     if (typeof window !== 'undefined') {
       window.addEventListener('resize', checkIsMobile);
-  
+
       return () => {
         window.removeEventListener('resize', checkIsMobile);
       };
     }
   }, []);
-  
 
   return (
     <nav className="z-50 fixed top-0 left-0 right-0 bg-yellow-20 flexCenter h-1/8 padding-container py-5 cursor: pointer">
@@ -285,9 +281,9 @@ const Navbar: React.FC<NavbarProps> = () => {
         <MobileNavbar isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} backgroundColor={''} />
       )}
 
-      {!isMobile && !isMenuOpen && ( // Removed isMobile === false condition
+      {!isMobile && !isMenuOpen && (
         <ul className={`flex flex-row items-center justify-center h-full gap-12 lg:flex hidden-on-mobile`}>
-          {NAV_LINKS.map((link: { id: string; key: React.Key | null | undefined; label: any; }, index: number) => (
+          {NAV_LINKS.map((link, index) => (
             <ScrollLink
               to={link.id}
               spy={true}
