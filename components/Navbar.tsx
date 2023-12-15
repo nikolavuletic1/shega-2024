@@ -227,83 +227,84 @@
 // Navbar.js
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Link as ScrollLink } from 'react-scroll';
-
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+import { useState, useEffect } from 'react';
 import { NAV_LINKS } from "@/constants";
 import HamburgerButton from './HamburgerIcon';
 import ArcadeButton, { Color } from './ArcadeButoon';
 import YellowBgPattern from './YellowBgPattern';
-import MobileNavbar from './MobileNavBar';
 
-interface NavbarProps {
-  // ... other props
-}
-
-const colors: Color[] = ['green', 'red', 'orange', 'blue'];
-
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   const handleToggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
 
-  useEffect(() => {
-    const checkIsMobile = () => {
-      const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches;
-      setIsMobile(isMobile);
-    };
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+  };
 
-    checkIsMobile();
-
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', checkIsMobile);
-
-      return () => {
-        window.removeEventListener('resize', checkIsMobile);
-      };
-    }
-  }, []);
+  const colors: Color[] = ['green', 'red', 'orange', 'blue'];
 
   return (
     <nav className="z-50 fixed top-0 left-0 right-0 bg-yellow-20 flexCenter h-1/8 padding-container py-5 cursor: pointer">
       <YellowBgPattern />
 
-      {isMobile && (
-        <div className="lg:hidden relative z-50">
-          <HamburgerButton onClick={handleToggleMenu} isOpen={isMenuOpen} />
+      <div className="md:hidden relative z-50">
+        <HamburgerButton onClick={handleToggleMenu} isOpen={isMenuOpen} />
+      </div>
+
+      {isMenuOpen && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 flex flex-col z-40">
+          <YellowBgPattern />
+          <div className="flex justify-end p-4">
+            <button onClick={handleToggleMenu}></button>
+          </div>
+
+          <ul className="flex flex-col items-center justify-center h-full gap-12 surfaceDuo iphoneSe">
+            {NAV_LINKS.map((link, index) => (
+              <ScrollLink
+                key={link.key}
+                to={link.id}
+                spy={true}
+                smooth={true}
+                offset={-80}
+                duration={500}
+                onClick={handleLinkClick}
+              >
+                <ArcadeButton color={colors[index % colors.length]}>
+                  {link.label}
+                </ArcadeButton>
+              </ScrollLink>
+            ))}
+          </ul>
         </div>
       )}
 
-      {(isMobile || isMenuOpen) && (
-        <MobileNavbar isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} backgroundColor={''} />
-      )}
-
-      {!isMobile && !isMenuOpen && (
-        <ul className={`flex flex-row items-center justify-center h-full gap-12 lg:flex hidden-on-mobile`}>
-          {NAV_LINKS.map((link, index) => (
-            <ScrollLink
-              to={link.id}
-              spy={true}
-              smooth={true}
-              offset={-144}
-              duration={500}
-              key={link.key}
-            >
-              <ArcadeButton color={colors[index % colors.length]}>
-                {link.label}
-              </ArcadeButton>
-            </ScrollLink>
-          ))}
-        </ul>
-      )}
+      <ul className="hidden md:flex flex-row items-center justify-center h-full gap-12">
+        {NAV_LINKS.map((link, index) => (
+          <ScrollLink
+            to={link.id}
+            spy={true}
+            smooth={true}
+            offset={-144}
+            duration={500}
+            key={link.key}
+          >
+            <ArcadeButton color={colors[index % colors.length]}>
+              {link.label}
+            </ArcadeButton>
+          </ScrollLink>
+        ))}
+      </ul>
     </nav>
   );
 };
 
 export default Navbar;
+
+
 
 // const debounce = function <T extends (...args: any[]) => void>(
 //   func: T,
