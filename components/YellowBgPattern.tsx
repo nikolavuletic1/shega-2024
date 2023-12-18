@@ -1,6 +1,15 @@
-const YellowBgPattern = () => {
+interface YellowBgPatternProps {
+  onLoad?: () => void;
+}
+const YellowBgPattern: React.FC<YellowBgPatternProps> = ({ onLoad }) => {
+
+  const handleImageLoad = () => {
+    if (onLoad) {
+      onLoad();
+    }
+  };
   return (
-    <div
+    <div onLoad={handleImageLoad}
       style={{
         position: 'absolute',
 
@@ -20,9 +29,14 @@ const YellowBgPattern = () => {
 
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover',
+        
       }}
+      
     ></div>
+   
   );
 };
 
+
 export default YellowBgPattern;
+
