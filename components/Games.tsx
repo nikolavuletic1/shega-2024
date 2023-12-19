@@ -165,7 +165,7 @@ const Games = () => {
       id="/games"
       onClick={() => scrollToSection('games')}
       className={`flex flex-col justify-center w-full ${
-        isSectionInView ? 'min-h-[22rem]' : ''
+        isSectionInView ? 'min-h-[12rem]' : ''
       } relative`}
     >
       <OrangeBgPattern />

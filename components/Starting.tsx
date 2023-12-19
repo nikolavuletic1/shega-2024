@@ -11,9 +11,7 @@ const Starting = () => {
   return (
     <>
       <div id="/" className="relative ipadMini mt-[5.5rem] sm:mt-[5.5rem] md:mt-[5.5rem] lg:mt-[9rem] xl:mt-[9rem] lg:pt-0 md:pt-12">
-        <div className="objects-container">
-          {/* ... other objects */}
-        </div>
+      
 
         <div
           style={{

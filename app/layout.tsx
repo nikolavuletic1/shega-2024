@@ -4,6 +4,8 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 
 
+
+
 export const metadata: Metadata = {
   title: 'Shega',
   description: 'Board Game Playroom landing page',
@@ -24,7 +26,9 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet"></link>
       </head>
       <body>
-        <Navbar />
+        <Navbar defaultOffset={-144}  gamesOffset={-144} footerOffset={-50} />
+        {/* <Navbar defaultOffset={-144} footerOffset={100} gamesOffset={200} /> */}
+
         <main className='relative overflow-hidden'>
           {children}
         </main>

@@ -402,6 +402,7 @@ const Footer = () => {
     <div
       id="/contact"
     
+    
       className={`flex flex-1 bg-blue-20 justify-center flex-col w-full h-full relative ${
         isSectionInView ? 'min-h-[22rem]' : ''
       }`}
