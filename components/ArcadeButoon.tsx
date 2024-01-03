@@ -28,7 +28,7 @@ const ArcadeButton: React.FC<ArcadeButtonProps> = ({ children, color }) => {
 
   return (
     <button
-      className={`relative cursor-pointer w-[6.6rem] h-[6.5rem] text-white text-[1.6rem] font-outline-2 active:text-lg rounded-full p-2 ${colorClasses[color]}`}
+      className={`relative cursor-pointer w-[5.5rem] h-[5.5rem] text-white text-[1.2rem] font-outline-2 active:text-lg rounded-full p-2 ${colorClasses[color]}`}
       style={{
         boxShadow: `
           rgba(0,0,0,.8) 0 0 7px 2px,
