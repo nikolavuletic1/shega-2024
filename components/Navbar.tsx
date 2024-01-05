@@ -77,7 +77,7 @@ const Navbar = () => {
     // Recalculate scroll position here
   }, [NAV_LINKS]); // This will run every time `NAV_LINKS` changes
   return (
-    <nav className="z-50 fixed top-0 left-0 right-0 bg-yellow-20 flexCenter h-[7rem] padding-container py-5 cursor: pointer">
+    <nav className="z-50 fixed top-0 left-0 right-0 bg-yellow-20 flexCenter h-[6rem] padding-container py-5 cursor: pointer">
       <YellowBgPattern onLoad={undefined} />
       <div className="md:hidden relative z-50">
         <HamburgerButton onClick={handleToggleMenu} isOpen={isMenuOpen} />
@@ -89,12 +89,12 @@ const Navbar = () => {
             <button onClick={handleToggleMenu}></button>
           </div>
           <ul className="flex flex-col items-center justify-center h-full gap-12 surfaceDuo iphoneSe">
-            {renderLinks(NAV_LINKS, -112)}
+            {renderLinks(NAV_LINKS, -96)}
           </ul>
         </div>
       )}
       <ul className="hidden md:flex flex-row items-center justify-center h-full gap-12">
-        {renderLinks(NAV_LINKS, -112)}
+        {renderLinks(NAV_LINKS, -96)}
       </ul>
     </nav>
   );

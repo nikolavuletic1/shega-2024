@@ -519,8 +519,6 @@
 
 
 
-
-
 import React, { useRef, useState, useEffect } from 'react';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import Image from 'next/image';
@@ -579,7 +577,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div id="/contact" className='flex flex-1 bg-blue-20 justify-center flex-col w-full h-full relative'>
+    <div id="/contact" className='flex flex-1 bg-blue-20 justify-center flex-col w-full min-h-screen relative'>
       <BlueBgPattern />
 
       <div className="text-[2.2rem] font-bold leading-none xs:text-5xl sm:text-6xl md:text-5xl lg:text-6xl xxl:text-7xl mb-8 mt-6 px-4 text-yellow-20 mx-auto text-center z-10" style={{ textShadow: `0 0.04em black, 0.04em 0 black, -0.04em 0 black, 0 -0.04em black` }}>
@@ -592,7 +590,8 @@ const Footer = () => {
           initial={{ opacity: 0, transform: 'translateX(-100%) translateY(0%)' }}
           animate={inView ? { opacity: 1, transform: 'translateX(0) translateY(0)' } : { opacity: 0, transform: 'translateX(-100%) translateY(0%)' }}
           transition={{ duration: 0.8 }}
-          className="border-8 border-blue-70 w-[95%] mx-auto lg:w-[65%] p-3 md:h-[24rem] rounded-3xl"
+          // className="border-8 border-blue-70 w-[95%] mx-auto lg:w-[65%] p-3 md:h-[24rem] rounded-3xl"
+          className="border-8 border-blue-70 w-[95%] mx-auto lg:w-[65%] p-3 rounded-3xl"
         >
           <form
             className="sm:w-full mx-auto p-2 flex flex-col justify-between h-full"
@@ -681,7 +680,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright section */}
-      <p className="flex flex-1 text-blue-70 font-medium text-2xl justify-center m-3 z-10">© Shega 2024</p>
+      <p className="flex text-blue-70 font-medium text-2xl items-center justify-center  m-3 z-10">© Shega 2024</p>
     </div>
   );
 };

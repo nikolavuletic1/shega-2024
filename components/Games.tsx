@@ -307,7 +307,7 @@ const Games = () => {
       // id="/games"
       
       // onClick={() => scrollToSection('games')}
-      className='flex flex-col  bg-blue-20 justify-center w-full h-full relative' 
+      className='flex flex-col bg-yellow-600 justify-evenly w-full min-h-screen relative' 
  
     >
       <OrangeBgPattern />
@@ -317,7 +317,7 @@ const Games = () => {
         initial={{ opacity: 0, scale: 0 }}
         animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
         transition={{ duration: 1 }}
-        className="text-[2.2rem] font-bold leading-none xs:text-5xl sm:text-6xl md:text-5xl lg:text-6xl xxl:text-7xl mb-8 mt-6 px-4 text-blue-500 text-center relative z-10"
+        className="text-[2.2rem] font-bold leading-none xs:text-5xl sm:text-6xl md:text-5xl lg:text-6xl xxl:text-7xl  text-blue-500 text-center relative z-10"
         style={{
           textShadow: `0 0.04em black, 0.04em 0 black, -0.04em 0 black, 0 -0.04em black`,
         }}
