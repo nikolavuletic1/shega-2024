@@ -19,7 +19,7 @@ import Image from 'next/image';
 const Starting = () => {
 
   const [ref, inView] = useInView({
-    threshold: 0.1, // Adjust the threshold as needed
+    threshold: 0.01, // Adjust the threshold as needed
   });
 
   return (
