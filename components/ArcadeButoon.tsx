@@ -9,9 +9,7 @@ interface ArcadeButtonProps {
 const colorClasses: Record<ArcadeButtonProps['color'], string> = {
   green: 'border-green-600 bg-[#7ED855] hover:bg-[#7ED855] active:bg-[#5A9D36]',
   red: 'border-red-600 bg-[#FF6666] hover:bg-[#FF6666] active:bg-[#E00000]',
-  //   orange: 'border-orange-600 bg-[#FFD54F] hover:bg-[#FFD54F] active:bg-[#FFA726]',
   orange: 'border-orange-600 bg-[#ffb442] hover:bg-[#ffb442] active:bg-[#FFA726]',
-
   blue: 'border-blue-600 bg-[#42A5F5] hover:bg-[#42A5F5] active:bg-[#1976D2]',
 };
 

@@ -1,4 +1,3 @@
-// ButtonComponent.tsx
 import React from 'react';
 
 interface HamburgerButtonProps {
