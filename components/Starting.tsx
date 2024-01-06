@@ -38,7 +38,7 @@ const Starting = () => {
             <motion.h1 ref={ref}
           initial={{ opacity: 0, transform: 'translateX(-100%) translateY(0%)' }}
           animate={inView ? { opacity: 1, transform: 'translateX(0) translateY(0)' } : { opacity: 0, transform: 'translateX(-100%) translateY(0%)' }}
-    transition={{ duration: 0.4 }} className="text-[2.2rem] font-bold leading-none xs:text-5xl sm:text-6xl md:text-5xl lg:text-6xl xxl:text-7xl mb-0 :mb-8 md:mb-8 lg:mb-8 mt-6 px-4 text-yellow-20 text-center relative z-10" style={{ textShadow: `0 0.04em black, 0.04em 0 black, -0.04em 0 black, 0 -0.04em black` }}>
+    transition={{ duration: 0.4 }} className="text-[2.2rem] font-bold leading-none xs:text-5xl sm:text-6xl md:text-5xl lg:text-6xl xxl:text-7xl mb-0 :mb-8 md:mb-8 lg:mb-8 mt-6 px-[1.2rem] text-yellow-20 text-center relative z-10" style={{ textShadow: `0 0.04em black, 0.04em 0 black, -0.04em 0 black, 0 -0.04em black` }}>
               Klub Ljubitelja Društvenih Igara
             </motion.h1>
 <motion.div
