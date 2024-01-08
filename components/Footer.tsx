@@ -56,7 +56,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div id="/contact" className='flex flex-1 bg-blue-20 justify-center flex-col w-full min-h-screen relative'>
+    <div id="/contact" className='flex flex-1 bg-blue-20 justify-around flex-col w-full min-h-screen relative'>
       <BlueBgPattern />
 
       <div className="text-[2.2rem] font-bold leading-none xs:text-5xl sm:text-6xl md:text-5xl lg:text-6xl xxl:text-7xl pb-12  px-4 text-yellow-20 mx-auto text-center z-10" style={{ textShadow: `0 0.04em black, 0.04em 0 black, -0.04em 0 black, 0 -0.04em black` }}>
