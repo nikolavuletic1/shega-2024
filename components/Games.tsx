@@ -147,7 +147,7 @@ const Games = () => {
 
       <div
         className="flex justify-center items-center relative">
-        <div className="flex flex-1 justify-center items-center w-full relative border-4 border-red-20 ">
+        <div className="flex flex-1 justify-center items-center w-full relative">
           <motion.div
             ref={ref}
             initial={{ opacity: 0, transform: 'translateX(100%) translateY(0%)' }}
